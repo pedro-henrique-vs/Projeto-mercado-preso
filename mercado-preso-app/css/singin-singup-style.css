@@ -1,0 +1,121 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E RESET
+   ========================================================================== */
+* {
+  box-sizing: border-box; /* Garante que padding e borders não alterem a largura total do elemento */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f4f6f9; /* Fundo suave para dar contraste com o formulário */
+  color: #333333;             /* Cor padrão de texto para boa legibilidade */
+  display: flex;
+  justify-content: center;   /* Centraliza o formulário horizontalmente */
+  align-items: center;        /* Centraliza o formulário verticalmente */
+  min-height: 100vh;          /* Garante ocupação de 100% da altura da tela */
+  padding: 20px;
+}
+
+/* ==========================================================================
+   2. ESTRUTURA DO FORMULÁRIO (CARD)
+   ========================================================================== */
+form {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px;           /* Limita a largura máxima no desktop */
+  padding: 32px;
+  border-radius: 12px;        /* Bordas arredondadas modernas */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* Sombra suave para destacar o card */
+  display: flex;
+  flex-direction: column;    /* Organiza os elementos verticalmente em coluna */
+}
+
+/* Título principal */
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   3. CAMPOS DE ENTRADA (LABELS E INPUTS)
+   ========================================================================== */
+label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 16px;       /* Substitui a necessidade de usar várias tags <br> */
+}
+
+/* Estado de foco nos inputs (quando o usuário clica para digitar) */
+input:focus {
+  border-color: #4f46e5;     /* Destaque em azul/roxo no contorno */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); /* Brilho de seleção */
+  background-color: #ffffff;
+}
+
+/* Cor do texto descritivo dentro do campo (placeholder) */
+input::placeholder {
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   4. BOTÃO DE SUBMISSÃO
+   ========================================================================== */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #4f46e5;  /* Cor primária de destaque */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Efeitos interativos do botão */
+button[type="submit"]:hover {
+  background-color: #4338ca;  /* Escurece levemente ao passar o mouse */
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);     /* Leve efeito de clique afundando */
+}
+
+/* ==========================================================================
+   5. LINKS DE NAVEGAÇÃO
+   ========================================================================== */
+a {
+  color: #4f46e5;
+  font-size: 0.875rem;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 8px;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #3730a3;
+  text-decoration: underline; /* Destaca o link na interação */
+}
