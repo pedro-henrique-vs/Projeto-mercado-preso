@@ -57,4 +57,16 @@ $sql = "INSERT INTO vendedores (
 
 $result = mysqli_query($conn, $sql);
 
+if ($result) {
+    $id_cadastrado = mysqli_insert_id($conn);
+
+    header("Location: ../index.php");
+    exit();
+}
+else {
+    echo "<h1 class=''>Erro ao cadastrar vendedor no banco</h1>";
+    echo "<a href='singin-vendedor.php'><button class=''>voltar</button></a>";
+}
+
 ?>
+

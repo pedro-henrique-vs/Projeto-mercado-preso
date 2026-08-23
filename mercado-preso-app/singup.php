@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/singin-singup-style.css">
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="proc-php/login.php" method="POST">
         <h1>Entrar</h1>
 
         <!-- Campo de Login / Email -->

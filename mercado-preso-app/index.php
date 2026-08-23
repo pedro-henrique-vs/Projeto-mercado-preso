@@ -2,9 +2,26 @@
 session_start();
 include_once("php-proc/conexao.php");
 
-$sql = 'select * from products';
+$usu_logado = null;
 
-$result = $conn->query($sql);
+if (isset($_SESSION['id_cadastrado'])){
+  $id_logado = $_SESSION['id_cadastrado'];
+
+
+  $sql = "SELECT vend_id AS id, vend_nome AS nome, 'vendedor' AS tipo FROM vendedores WHERE vend_id = '$id_logado' UNION SELECT usu_id AS id, usu_nome AS nome, 'cliente' AS tipo FROM usuarios WHERE usu_id = '$id_logado'";
+
+  $result = $conn->query($sql);
+
+  if ($result && $result->num_rows > 0){
+    $usu_logado = $result->fetch_assoc();
+    $result->free();
+  }
+}
+
+$sql_products = "SELECT * FROM products LIMIT 10";
+
+$result_products = $conn->query($sql_products);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -45,6 +62,7 @@ $result = $conn->query($sql);
         <div class="carousel-viewport">
           <div class="carousel-track" id="carouselTrack">
             
+          <?php //while ($prod = $result_products->fetch_assoc()): ?>
             <!-- Card 1 -->
             <div class="product-card">
               <div class="card-image-placeholder">

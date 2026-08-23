@@ -12,8 +12,19 @@ include_once("php-proc/conexao.php");
     <title>Cadastro</title>
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="php-proc/cad_usu.php" method="POST">
         <h1>Cadastre-se</h1>
+
+        <!-- Campo de Login / Email -->
+        <label for="usuario-email">Nome</label><br>
+        <input 
+            type="text" 
+            id="usuario-nome" 
+            name="nome" 
+            placeholder="insira um nome de usuário" 
+            required
+        >
+        <br><br>
 
         <!-- Campo de Login / Email -->
         <label for="usuario-email">Login</label><br>
