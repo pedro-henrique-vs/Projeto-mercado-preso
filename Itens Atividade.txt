@@ -1,0 +1,4 @@
+1- Lista de Produtos: inserir qtde, cards
+2- Login e Senha
+3- Manutenção de produtos
+4- Desafio: Módulo de pagamento
