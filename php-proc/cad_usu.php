@@ -32,7 +32,7 @@ if ($result) {
 }
 else{
     echo "<h1 class=''>Erro ao cadastrar usuario no banco</h1>";
-    echo "<a href='singin.php'><button class=''>voltar</button></a>";
+    echo "<a href='../cadastro.php'><button class=''>voltar</button></a>";
 }
 
 ?>

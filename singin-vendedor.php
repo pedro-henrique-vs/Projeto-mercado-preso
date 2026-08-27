@@ -396,6 +396,14 @@ include_once("php-proc/conexao.php");
                         <input type="text" id="bairro" name="bairro" placeholder="Seu bairro" required>
                     </div>
                 </div>
+                <!-- Seção Senha -->
+                <div class="section-title">Acesso</div>
+                <div class="form-grid">
+                    <div class="field-group full-width">
+                        <label for="senha">Senha de Acesso *</label>
+                        <input type="password" id="senha" name="senha" placeholder="Digite uma senha forte" required>
+                    </div>
+                </div>
 
                 <!-- Botão Enviar -->
                 <button type="submit">Cadastrar Vendedor</button>

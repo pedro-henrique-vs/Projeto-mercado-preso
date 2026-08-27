@@ -64,7 +64,7 @@ include_once("php-proc/conexao.php");
         <br><br>
 
         <!-- Links de Navegação -->
-        <a href="singup.php">Já possui uma conta? Faça login</a><br>
+        <a href="login.php">Já possui uma conta? Faça login</a><br>
         <a href="singin-vendedor.php">Faça parte da equipe</a>
     </form>
 </body>

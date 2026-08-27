@@ -31,7 +31,7 @@ $result_products = $conn->query($sql_products);
   <title>Loja Virtual - Vitrine de Produtos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/index-style.css">
 </head>
 <body>
@@ -46,7 +46,11 @@ $result_products = $conn->query($sql_products);
         </svg>
         <input type="text" placeholder="Buscar produtos..." aria-label="Buscar produtos">
       </div>
-      <a href="singin.php" class="btn btn-primary">Cadastre-se</a>
+      <?php if (isset($_SESSION['tipo_usuario'])): ?>
+          <a href="<?= ($_SESSION['tipo_usuario'] == 'vendedor') ? 'painel-vendedor.php' : (($_SESSION['tipo_usuario'] == 'admin') ? 'painel-admin.php' : 'painel-cliente.php') ?>" class="btn btn-primary">Meu Painel</a>
+      <?php else: ?>
+          <a href="cadastro.php" class="btn btn-primary">Cadastre-se</a>
+      <?php endif; ?>
     </div>
   </header>
 
@@ -76,7 +80,7 @@ $result_products = $conn->query($sql_products);
               <div class="card-body">
                 <h3 class="product-name">Teclado Mecânico RGB</h3>
                 <p class="product-price">R$ 299,90</p>
-                <a href="singin.php" class="btn btn-cart">Add to Cart</a>
+                <a href="cadastro.php" class="btn btn-cart">Add to Cart</a>
               </div>
             </div>
 
@@ -93,7 +97,7 @@ $result_products = $conn->query($sql_products);
               <div class="card-body">
                 <h3 class="product-name">Mouse Gamer Wireless</h3>
                 <p class="product-price">R$ 189,00</p>
-                <a href="singin.php" class="btn btn-cart">Add to Cart</a>
+                <a href="cadastro.php" class="btn btn-cart">Add to Cart</a>
               </div>
             </div>
 
@@ -110,7 +114,7 @@ $result_products = $conn->query($sql_products);
               <div class="card-body">
                 <h3 class="product-name">Headset Surround 7.1</h3>
                 <p class="product-price">R$ 349,50</p>
-                <a href="singin.php" class="btn btn-cart">Add to Cart</a>
+                <a href="cadastro.php" class="btn btn-cart">Add to Cart</a>
               </div>
             </div>
 
@@ -127,7 +131,7 @@ $result_products = $conn->query($sql_products);
               <div class="card-body">
                 <h3 class="product-name">Monitor 24" Full HD 144Hz</h3>
                 <p class="product-price">R$ 899,00</p>
-                <a href="singin.php" class="btn btn-cart">Add to Cart</a>
+                <a href="cadastro.php" class="btn btn-cart">Add to Cart</a>
               </div>
             </div>
 
@@ -144,7 +148,7 @@ $result_products = $conn->query($sql_products);
               <div class="card-body">
                 <h3 class="product-name">Cadeira Gamer Ergonômica</h3>
                 <p class="product-price">R$ 749,90</p>
-                <a href="singin.php" class="btn btn-cart">Add to Cart</a>
+                <a href="cadastro.php" class="btn btn-cart">Add to Cart</a>
               </div>
             </div>
 
@@ -161,7 +165,7 @@ $result_products = $conn->query($sql_products);
               <div class="card-body">
                 <h3 class="product-name">Webcam Full HD 1080p</h3>
                 <p class="product-price">R$ 220,00</p>
-                <a href="singin.php" class="btn btn-cart">Add to Cart</a>
+                <a href="cadastro.php" class="btn btn-cart">Add to Cart</a>
               </div>
             </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/08/2026 às 21:35
+-- Tempo de geração: 27/08/2026 às 01:38
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -92,6 +92,23 @@ CREATE TABLE `usuarios` (
   `usu_data_criacao` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`usu_id`, `usu_nome`, `usu_email`, `usu_senha`, `usu_cpf`, `usu_telefone`, `usu_data_nasc`, `usu_cadastro_completo`, `usu_data_criacao`) VALUES
+(1, 'Pedro Admin', 'alinario@host', '123', NULL, NULL, NULL, 0, '2026-08-26 19:31:23'),
+(2, 'Jo├úo Silva', 'joao.silva@gmail.com', 'senha123', '01234567890', '11987654321', '1992-01-10', 1, '2026-08-26 20:09:42'),
+(3, 'Ana Souza', 'ana.souza@hotmail.com', 'senha123', '12345678901', '11976543210', '1994-03-25', 1, '2026-08-26 20:09:42'),
+(4, 'Pedro Santos', 'pedro.santos@yahoo.com', 'senha123', '23456789012', '11965432109', '1988-07-14', 1, '2026-08-26 20:09:42'),
+(5, 'Fernanda Lima', 'fernanda.lima@outlook.com', 'senha123', '34567890123', '11954321098', '1990-12-05', 1, '2026-08-26 20:09:42'),
+(6, 'Roberto Oliveira', 'roberto.oliveira@gmail.com', 'senha123', '45678901234', '11943210987', '1985-09-30', 1, '2026-08-26 20:09:42'),
+(7, 'Juliana Alves', 'juliana.alves@hotmail.com', 'senha123', '56789012345', '11932109876', '1995-11-20', 1, '2026-08-26 20:09:42'),
+(8, 'Marcos Rodrigues', 'marcos.rodrigues@yahoo.com', 'senha123', '67890123456', '11921098765', '1993-02-18', 1, '2026-08-26 20:09:42'),
+(9, 'Camila Fernandes', 'camila.fernandes@outlook.com', 'senha123', '78901234567', '11910987654', '1989-06-08', 1, '2026-08-26 20:09:42'),
+(10, 'Rafael Costa', 'rafael.costa@gmail.com', 'senha123', '89012345678', '11909876543', '1987-04-12', 1, '2026-08-26 20:09:42'),
+(11, 'Beatriz Martins', 'beatriz.martins@hotmail.com', 'senha123', '90123456789', '11898765432', '1991-10-28', 1, '2026-08-26 20:09:42');
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +119,7 @@ CREATE TABLE `vendedores` (
   `vend_id` int(11) NOT NULL,
   `vend_nome` varchar(100) DEFAULT NULL,
   `vend_email` varchar(255) DEFAULT NULL,
+  `vend_senha` varchar(255) NOT NULL,
   `vend_dtnasc` date DEFAULT NULL,
   `vend_razao_social` varchar(255) DEFAULT NULL,
   `vend_nomefantasia` varchar(255) DEFAULT NULL,
@@ -114,6 +132,17 @@ CREATE TABLE `vendedores` (
   `vend_cpf` varchar(14) DEFAULT NULL,
   `vend_cnpj` varchar(18) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `vendedores`
+--
+
+INSERT INTO `vendedores` (`vend_id`, `vend_nome`, `vend_email`, `vend_senha`, `vend_dtnasc`, `vend_razao_social`, `vend_nomefantasia`, `vend_inscricao_estadual`, `vend_cep`, `vend_numero`, `vend_logradouro`, `vend_bairro`, `tipo_pessoa`, `vend_cpf`, `vend_cnpj`) VALUES
+(9, 'Lucas Almeida', 'lucas.almeida@gmail.com', 'senha123', '1990-05-15', NULL, NULL, NULL, '01001-000', '100', 'Pra├ºa da S├®', 'S├®', 'PF', '111.222.333-44', NULL),
+(10, NULL, 'contato@techstore.com.br', '', NULL, 'Tech Store Comercio Eletronico LTDA', 'TechStore', '123456789', '02002-000', '200', 'Rua Volunt├írios da P├ítria', 'Santana', 'PJ', NULL, '11.222.333/0001-44'),
+(11, 'Mariana Costa', 'mariana.costa@hotmail.com', '', '1985-08-22', NULL, NULL, NULL, '03003-000', '300', 'Avenida Paulista', 'Bela Vista', 'PF', '555.666.777-88', NULL),
+(12, NULL, 'vendas@modafit.com.br', '', NULL, 'Moda Fit Vestuarios SA', 'ModaFit', '987654321', '04004-000', '400', 'Rua Funchal', 'Vila Ol├¡mpia', 'PJ', NULL, '55.666.777/0001-88'),
+(13, 'Carlos Pereira', 'carlos.pereira5@yahoo.com', '', '1978-11-30', NULL, NULL, NULL, '05005-000', '500', 'Avenida Brigadeiro Faria Lima', 'Pinheiros', 'PF', '999.000.111-22', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -165,13 +194,13 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `vendedores`
 --
 ALTER TABLE `vendedores`
-  MODIFY `vend_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `vend_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

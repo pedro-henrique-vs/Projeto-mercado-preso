@@ -74,7 +74,7 @@ $result = $conn->query($sql);
                                     R$ <?php echo number_format($row['price'], 2, ',', '.'); ?>
                                 </p>
                                 
-                                <a href="singin.php?id=<?php echo $row['id']; ?>" class="btn btn-cart">
+                                <a href="cadastro.php?id=<?php echo $row['id']; ?>" class="btn btn-cart">
                                     Add to Cart
                                 </a>
                             </div>

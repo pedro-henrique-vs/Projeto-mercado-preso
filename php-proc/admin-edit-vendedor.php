@@ -20,6 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $logradouro = mysqli_real_escape_string($conn, $_POST['logradouro']);
     $numero = mysqli_real_escape_string($conn, $_POST['numero']);
     $bairro = mysqli_real_escape_string($conn, $_POST['bairro']);
+    $senha = isset($_POST['senha']) ? mysqli_real_escape_string($conn, $_POST['senha']) : '';
+    
+    $update_senha = "";
+    if (!empty($senha)) {
+        $update_senha = "vend_senha = '$senha',";
+    }
 
     if ($tipo_pessoa === 'PF') {
         $nome = mysqli_real_escape_string($conn, $_POST['nome']);
@@ -37,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   vend_logradouro = '$logradouro', 
                   vend_numero = '$numero', 
                   vend_bairro = '$bairro',
+                  $update_senha
                   vend_razao_social = NULL,
                   vend_nomefantasia = NULL,
                   vend_cnpj = NULL,
@@ -60,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   vend_logradouro = '$logradouro', 
                   vend_numero = '$numero', 
                   vend_bairro = '$bairro',
+                  $update_senha
                   vend_nome = NULL,
                   vend_cpf = NULL,
                   vend_dtnasc = NULL

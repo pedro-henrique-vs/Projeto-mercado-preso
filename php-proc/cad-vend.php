@@ -25,6 +25,9 @@ $logradouro = $_POST['logradouro'];
 $numero = $_POST['numero'];
 $bairro = $_POST['bairro'];
 
+// Senha
+$senha = $_POST['senha'];
+
 $sql = "INSERT INTO vendedores (
     vend_nome, 
     vend_email, 
@@ -38,7 +41,8 @@ $sql = "INSERT INTO vendedores (
     vend_numero, 
     vend_logradouro, 
     vend_bairro, 
-    tipo_pessoa
+    tipo_pessoa,
+    vend_senha
 ) VALUES (
     '$nome', 
     '$email', 
@@ -52,7 +56,8 @@ $sql = "INSERT INTO vendedores (
     '$numero', 
     '$logradouro', 
     '$bairro', 
-    '$tipo_pessoa'
+    '$tipo_pessoa',
+    '$senha'
 )";
 
 $result = mysqli_query($conn, $sql);

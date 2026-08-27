@@ -8,26 +8,15 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'admin') 
     exit();
 }
 
-$query = "
-    SELECT s.id, s.quantity, s.total, s.sale_date, p.name as product_name
-    FROM sales s
-    LEFT JOIN products p ON s.product_id = p.id
-    ORDER BY s.sale_date DESC
-";
+$query = "SELECT * FROM usuarios ORDER BY usu_id DESC";
 $result = mysqli_query($conn, $query);
-
-$query_total = "SELECT SUM(total) as receita_total, COUNT(id) as vendas_totais FROM sales";
-$result_total = mysqli_query($conn, $query_total);
-$row_total = mysqli_fetch_assoc($result_total);
-$receita_total = $row_total['receita_total'] ?? 0;
-$vendas_totais = $row_total['vendas_totais'] ?? 0;
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatórios - Painel Admin</title>
+    <title>Gerenciar Clientes - Painel Admin</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
                 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f9; color: #333333; }
@@ -44,18 +33,14 @@ $vendas_totais = $row_total['vendas_totais'] ?? 0;
         header h1 { color: #1e293b; }
         .logout-btn { background-color: #ef4444; color: white; padding: 10px 20px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.2s; }
         .logout-btn:hover { background-color: #dc2626; }
-        
-        .cards-container { display: flex; gap: 20px; margin-bottom: 30px; }
-        .card { background-color: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); flex: 1; text-align: center; }
-        .card h3 { color: #64748b; margin-bottom: 10px; font-size: 1.1rem; }
-        .card p { font-size: 2rem; font-weight: bold; color: #10b981; }
-        .card p.blue { color: #3b82f6; }
-        
         .table-container { background-color: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 20px; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
         th { background-color: #f8fafc; color: #64748b; font-weight: 600; }
         tr:hover { background-color: #f1f5f9; }
+        .action-links a { padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+        .delete-link { background-color: #ef4444; color: white; }
+        .delete-link:hover { background-color: #dc2626; }
     </style>
 </head>
 <body>
@@ -64,55 +49,44 @@ $vendas_totais = $row_total['vendas_totais'] ?? 0;
         <a href="index.php" class="logo">Mercado<span>Preso</span></a>
         <ul class="nav-links">
             <li><a href="painel-admin.php">Dashboard Inicial</a></li>
-            <li><a href="admin-clientes.php">Gerenciar Clientes</a></li>
+            <li><a href="admin-clientes.php" class="active">Gerenciar Clientes</a></li>
             <li><a href="admin-vendedores.php">Gerenciar Vendedores</a></li>
             <li><a href="admin-produtos.php">Catálogo Global</a></li>
-            <li><a href="admin-relatorios.php" class="active">Relatórios</a></li>
+            <li><a href="admin-relatorios.php">Relatórios</a></li>
         </ul>
         <a href="php-proc/logout.php" class="logout-btn">Sair</a>
     </nav>
 
     <main class="main-content">
         <header>
-            <h1>Relatórios e Vendas</h1>
+            <h1>Gerenciar Clientes</h1>
         </header>
-
-        <div class="cards-container">
-            <div class="card">
-                <h3>Total de Vendas (Qtd)</h3>
-                <p class="blue"><?= $vendas_totais ?></p>
-            </div>
-            <div class="card">
-                <h3>Receita Total</h3>
-                <p>R$ <?= number_format($receita_total, 2, ',', '.') ?></p>
-            </div>
-        </div>
 
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>ID Venda</th>
-                        <th>Data/Hora</th>
-                        <th>Produto</th>
-                        <th>Qtd.</th>
-                        <th>Total</th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if(mysqli_num_rows($result) > 0): ?>
                         <?php while($row = mysqli_fetch_assoc($result)): ?>
                             <tr>
-                                <td>#<?= $row['id'] ?></td>
-                                <td><?= date('d/m/Y H:i', strtotime($row['sale_date'])) ?></td>
-                                <td><?= htmlspecialchars($row['product_name'] ?? 'Produto Removido') ?></td>
-                                <td><?= $row['quantity'] ?></td>
-                                <td>R$ <?= number_format($row['total'], 2, ',', '.') ?></td>
+                                <td><?= $row['usu_id'] ?></td>
+                                <td><?= htmlspecialchars($row['usu_nome']) ?></td>
+                                <td><?= htmlspecialchars($row['usu_email']) ?></td>
+                                <td class="action-links">
+                                    <a href="php-proc/admin-delete-cliente.php?id=<?= $row['usu_id'] ?>" class="delete-link" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</a>
+                                </td>
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="5" style="text-align: center;">Nenhuma venda registrada.</td>
+                            <td colspan="4" style="text-align: center;">Nenhum cliente cadastrado.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
